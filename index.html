@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>福州鳌峰学校</title>
+<style>
+  :root {
+    --navy: #0a2a4a;
+    --blue: #1557a0;
+    --blue-light: #2e86de;
+    --gold: #f5c542;
+    --bg: #f4f7fb;
+    --card: #ffffff;
+    --text: #1f2d3d;
+    --text-muted: #6b7c93;
+    --radius: 16px;
+    --shadow: 0 6px 18px rgba(10, 42, 74, .10);
+    --shadow-hover: 0 30px 64px rgba(10, 42, 74, .30), 0 10px 24px rgba(10, 42, 74, .16);
+    --ease: cubic-bezier(.2,.8,.2,1);
+    --dur: .34s;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.14) 0%, rgba(255,255,255,.04) 100%),
+      rgba(10, 42, 74, .55);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, .18);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, .25),
+      0 8px 32px rgba(5, 20, 40, .25);
+  }
+  header::before {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.6), transparent);
+    pointer-events: none;
+  }
+  .nav-wrap {
+    max-width: 1200px; margin: 0 auto; padding: 0 24px;
+    height: 68px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+    color: #fff; font-size: 19px; font-weight: 700; letter-spacing: 1px;
+    text-shadow: 0 1px 2px rgba(0,0,0,.2);
+  }
+  .logo-mark {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: linear-gradient(135deg, #2e86de, #1557a0);
+    display: grid; place-items: center;
+    color: #fff; font-weight: 900; font-size: 18px;
+    box-shadow: 0 4px 14px rgba(46, 134, 222, .35), inset 0 1px 0 rgba(255,255,255,.4);
+  }
+  .nav-badge {
+    font-size: 12px; color: rgba(255,255,255,.8);
+    padding: 4px 12px;
+    border: 1px solid rgba(255,255,255,.22);
+    border-radius: 999px; letter-spacing: 1px;
+    background: rgba(255,255,255,.06);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .hero {
+    position: relative; overflow: hidden; color: #fff; text-align: center;
+    padding: 120px 24px 220px;
+    background: linear-gradient(180deg, #0a2a4a 0%, #123c66 40%, #1557a0 75%, #1a6bb0 100%);
+  }
+  .hero::before {
+    content: "";
+    position: absolute; width: 700px; height: 700px;
+    top: -280px; left: 50%; transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(46,134,222,.45) 0%, transparent 65%);
+    filter: blur(40px); pointer-events: none;
+  }
+  .waves {
+    position: absolute; left: 0; right: 0; bottom: -1px;
+    height: 220px; pointer-events: none; overflow: hidden;
+  }
+  .wave {
+    position: absolute; left: 0; bottom: 0;
+    width: 200%; height: 100%;
+    background-repeat: repeat-x; background-position: 0 bottom;
+    background-size: 50% 100%; will-change: transform;
+  }
+  .wave1 {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'><path d='M0,60 C150,110 350,10 600,60 C850,110 1050,10 1200,60 L1200,120 L0,120 Z' fill='%231a6bb0' fill-opacity='0.55'/></svg>");
+    animation: waveMove 18s linear infinite; height: 200px;
+  }
+  .wave2 {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'><path d='M0,70 C200,120 400,20 600,70 C800,120 1000,20 1200,70 L1200,120 L0,120 Z' fill='%232e86de' fill-opacity='0.45'/></svg>");
+    animation: waveMove 12s linear infinite reverse; height: 170px;
+  }
+  .wave3 {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'><path d='M0,80 C180,130 380,30 600,80 C820,130 1020,30 1200,80 L1200,120 L0,120 Z' fill='%23f5c542' fill-opacity='0.12'/></svg>");
+    animation: waveMove 26s linear infinite; height: 140px;
+  }
+  @keyframes waveMove {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .hero-inner { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
+  .hero-tag {
+    display: inline-block; font-size: 13px; letter-spacing: 2px;
+    padding: 6px 18px; border-radius: 999px;
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+    color: var(--gold); margin-bottom: 26px; backdrop-filter: blur(4px);
+  }
+  .hero h1 {
+    font-size: clamp(34px, 6vw, 62px);
+    letter-spacing: 6px; font-weight: 800; line-height: 1.2;
+    background: linear-gradient(180deg, #fff 30%, #bcd6f5 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero p {
+    margin-top: 20px; font-size: clamp(15px, 2vw, 18px);
+    color: rgba(255,255,255,.8); letter-spacing: 2px;
+  }
+  .hero .motto {
+    margin-top: 34px; display: inline-flex; gap: 10px; align-items: center;
+    font-size: 15px; letter-spacing: 4px; color: var(--gold);
+  }
+  .hero .motto::before, .hero .motto::after {
+    content: ""; width: 40px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  section { max-width: 1200px; margin: 0 auto; padding: 88px 24px; }
+  .section-head { text-align: center; margin-bottom: 56px; }
+  .section-title {
+    font-size: clamp(24px, 3.4vw, 34px); font-weight: 800;
+    color: var(--navy); letter-spacing: 2px;
+  }
+  .section-title span { color: var(--blue-light); }
+  .section-sub { margin-top: 12px; color: var(--text-muted); font-size: 15px; letter-spacing: 1px; }
+  .section-sub::before {
+    content: ""; display: block; width: 46px; height: 3px; margin: 0 auto 18px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--blue-light));
+  }
+
+  .reveal {
+    opacity: 0;
+    animation: fadeUp .7s var(--ease) forwards;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .about-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+  }
+  .stat-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 34px 18px; text-align: center;
+    border: 1px solid #eaf0f7;
+    box-shadow: var(--shadow);
+    transition:
+      transform var(--dur) var(--ease),
+      box-shadow var(--dur) var(--ease);
+    transform-origin: center center;
+    will-change: transform, box-shadow;
+    cursor: pointer;
+    position: relative;
+  }
+  .about-grid .stat-card:hover {
+    transform: scale(1.12);
+    box-shadow: var(--shadow-hover);
+    z-index: 3;
+  }
+  .stat-card .num {
+    font-size: 32px; font-weight: 800; line-height: 1.2;
+    background: linear-gradient(135deg, var(--blue), var(--blue-light));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stat-card .label { margin-top: 8px; font-size: 14px; color: var(--text-muted); }
+
+  .idea-section {
+    background: linear-gradient(180deg, #eaf1fa 0%, var(--bg) 100%);
+    max-width: none;
+  }
+  .idea-inner { max-width: 1200px; margin: 0 auto; }
+  .idea-box {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+  }
+  .idea-item {
+    position: relative; background: var(--card);
+    border-radius: var(--radius);
+    padding: 32px 26px;
+    border: 1px solid #e6eef8;
+    box-shadow: var(--shadow); overflow: hidden;
+    transition:
+      transform var(--dur) var(--ease),
+      box-shadow var(--dur) var(--ease);
+    transform-origin: center center;
+    will-change: transform, box-shadow;
+  }
+  .idea-item::before {
+    content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--blue-light));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform var(--dur) var(--ease);
+  }
+  .idea-box .idea-item:hover {
+    transform: scale(1.07);
+    box-shadow: var(--shadow-hover);
+    z-index: 3;
+  }
+  .idea-item:hover::before { transform: scaleX(1); }
+  .idea-item h3 {
+    font-size: 18px; color: var(--navy); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .idea-item h3::before {
+    content: ""; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gold); flex: none;
+  }
+  .idea-item p { font-size: 15px; color: #4a5a6e; }
+
+  .feature-list {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .feature-item {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 34px 30px;
+    border: 1px solid #eaf0f7;
+    box-shadow: var(--shadow);
+    transition:
+      transform var(--dur) var(--ease),
+      box-shadow var(--dur) var(--ease);
+    transform-origin: center center;
+    will-change: transform, box-shadow;
+    position: relative;
+  }
+  .feature-list .feature-item:hover {
+    transform: scale(1.06);
+    box-shadow: var(--shadow-hover);
+    z-index: 3;
+  }
+  .feature-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    display: grid; place-items: center; margin-bottom: 20px;
+    background: linear-gradient(135deg, #e8f1fc, #d4e6fb);
+    color: var(--blue); font-size: 24px; font-weight: 800;
+  }
+  .feature-item h3 { font-size: 19px; color: var(--navy); margin-bottom: 12px; }
+  .feature-item p { font-size: 15px; color: #4a5a6e; }
+
+  .contact {
+    position: relative; overflow: hidden;
+    max-width: none; padding: 88px 24px;
+    background: linear-gradient(180deg, #1557a0 0%, #0a2a4a 100%);
+    color: #fff;
+  }
+  .contact::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'><path d='M0,60 C150,110 350,10 600,60 C850,110 1050,10 1200,60 L1200,120 L0,120 Z' fill='%23ffffff' fill-opacity='0.04'/></svg>");
+    background-repeat: repeat-x; background-size: 50% 100%;
+    background-position: 0 bottom;
+    animation: waveMove 20s linear infinite; pointer-events: none;
+  }
+  .contact-inner { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; text-align: center; }
+  .contact h2 {
+    font-size: clamp(24px, 3.4vw, 34px); font-weight: 800; letter-spacing: 2px;
+    margin-bottom: 44px;
+  }
+  .contact h2 span { color: var(--gold); }
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+  }
+  .contact-card {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: var(--radius);
+    padding: 30px 22px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 6px 18px rgba(0,0,0,.18);
+    transition:
+      transform var(--dur) var(--ease),
+      box-shadow var(--dur) var(--ease),
+      background var(--dur) var(--ease);
+    transform-origin: center center;
+    will-change: transform, box-shadow;
+    position: relative;
+  }
+  .contact-grid .contact-card:hover {
+    transform: scale(1.08);
+    background: rgba(255,255,255,.1);
+    box-shadow: 0 30px 64px rgba(0,0,0,.42);
+    z-index: 3;
+  }
+  .contact-card strong {
+    display: block; color: var(--gold); font-size: 14px;
+    letter-spacing: 2px; margin-bottom: 10px; font-weight: 600;
+  }
+  .contact-card span { font-size: 16px; color: rgba(255,255,255,.9); }
+
+  footer {
+    background: #071f38; color: rgba(255,255,255,.45);
+    text-align: center; padding: 26px 24px; font-size: 13px; letter-spacing: 1px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { animation: none; opacity: 1; }
+    .wave, .contact::before { animation: none; }
+    .stat-card, .idea-item, .feature-item, .contact-card { transition: none; }
+    .stat-card:hover, .idea-item:hover, .feature-item:hover, .contact-card:hover { transform: none; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-wrap { height: 60px; padding: 0 18px; }
+    .nav-badge { display: none; }
+    .hero { padding: 90px 20px 180px; }
+    .hero h1 { letter-spacing: 3px; }
+    .waves { height: 160px; }
+    .wave1 { height: 150px; }
+    .wave2 { height: 125px; }
+    .wave3 { height: 100px; }
+    section { padding: 64px 20px; }
+    .contact { padding: 64px 20px; }
+    .stat-card:hover, .idea-item:hover, .feature-item:hover, .contact-card:hover { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <div class="logo">
+      <span class="logo-mark">AF</span>
+      <span>福州鳌峰学校</span>
+    </div>
+    <span class="nav-badge">公办九年一贯制 · 台江区</span>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">承袭鳌峰书院文脉</div>
+    <h1>福州鳌峰学校</h1>
+    <p>公办九年一贯制学校 · 福州市台江区</p>
+    <div class="motto">独占鳌头 · 勇攀高峰</div>
+  </div>
+  <div class="waves" aria-hidden="true">
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+  </div>
+</div>
+
+<section>
+  <div class="section-head reveal">
+    <h2 class="section-title">学校<span>概况</span></h2>
+    <p class="section-sub">承袭鳌峰书院文脉，打造现代化品牌学校</p>
+  </div>
+  <div class="about-grid">
+    <div class="stat-card reveal"><div class="num">2020</div><div class="label">新校区启用</div></div>
+    <div class="stat-card reveal"><div class="num">46.8亩</div><div class="label">占地面积</div></div>
+    <div class="stat-card reveal"><div class="num">43个</div><div class="label">教学班</div></div>
+    <div class="stat-card reveal"><div class="num">2005人</div><div class="label">在校学生</div></div>
+    <div class="stat-card reveal"><div class="num">133人</div><div class="label">教职员工</div></div>
+    <div class="stat-card reveal"><div class="num">40人</div><div class="label">硕士及以上教师</div></div>
+  </div>
+</section>
+
+<section class="idea-section">
+  <div class="idea-inner">
+    <div class="section-head reveal">
+      <h2 class="section-title">办学<span>理念</span></h2>
+      <p class="section-sub">创品牌学校 · 育品格学生 · 塑品味老师</p>
+    </div>
+    <div class="idea-box">
+      <div class="idea-item reveal">
+        <h3>学校精神</h3>
+        <p>独占鳌头，勇攀高峰。校名承袭鳌峰书院、鳌峰洲文脉，激励师生追求卓越。</p>
+      </div>
+      <div class="idea-item reveal">
+        <h3>校训</h3>
+        <p>明德、砺学、笃行、慎思。注重品德修养、勤奋学习、踏实实践与独立思考。</p>
+      </div>
+      <div class="idea-item reveal">
+        <h3>办学思路</h3>
+        <p>以信息技术为抓手，走科研强校、质量立校之路，推动教育教学高质量发展。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head reveal">
+    <h2 class="section-title">办学<span>特色</span></h2>
+    <p class="section-sub">以球育人 · 智慧校园</p>
+  </div>
+  <div class="feature-list">
+    <div class="feature-item reveal">
+      <div class="feature-icon">⚽</div>
+      <h3>传统足球特色校</h3>
+      <p>学校是福州市传统足球特色校，每年春季举办校园足球文化节，通过联赛、征文、绘画等形式丰富足球文化内涵，以球育人、以球启智、以球健体。</p>
+    </div>
+    <div class="feature-item reveal">
+      <div class="feature-icon">💡</div>
+      <h3>智慧校园建设</h3>
+      <p>作为信息技术与学科深度融合基地校、福州市人工智能教育试点校，教室全面配备86寸交互大屏，无线网络全覆盖，建有心健室、VR虚拟实验室、人机对话室等专用空间。</p>
+    </div>
+    <div class="feature-item reveal">
+      <div class="feature-icon">🎓</div>
+      <h3>九年一贯制办学</h3>
+      <p>2024年8月小学部正式招生，形成九年一贯制办学格局，为学生提供连贯的成长路径。</p>
+    </div>
+  </div>
+</section>
+
+<div class="contact">
+  <div class="contact-inner">
+    <h2>联系<span>我们</span></h2>
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <strong>学校地址</strong>
+        <span>福州市台江区鳌兴路123号</span>
+      </div>
+      <div class="contact-card reveal">
+        <strong>联系电话</strong>
+        <span>28022207</span>
+      </div>
+      <div class="contact-card reveal">
+        <strong>信息发布</strong>
+        <span>微信公众号「福州鳌峰学校」</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>© 福州鳌峰学校</footer>
+
+<script>
+  (function () {
+    var items = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.style.opacity = 1; });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    items.forEach(function (el) {
+      el.style.animationPlayState = 'paused';
+      io.observe(el);
+    });
+  })();
+</script>
+
+</body>
+</html>
